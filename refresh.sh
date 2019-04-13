@@ -1,7 +1,7 @@
 #!/bin/bash
 
-stack exec zurich-blog build
+stack exec minutes build
 git add .
 git commit -am "Refreshed site from script."
 git push
-stack exec zurich-blog watch
+stack exec minutes watch
