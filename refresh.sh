@@ -1,7 +1,7 @@
 #!/bin/bash
 
-stack exec minutes build
+stack exec cornell-personal-site build
 git add .
 git commit -am "Refreshed site from script."
 git push
-stack exec minutes watch
+stack exec cornell-personal-site watch

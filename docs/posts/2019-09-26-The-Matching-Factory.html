@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Carter+One|Open+Sans|" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Spencer Peters - The Matching Factory</title>
+        <link rel="stylesheet" href="../css/default.css" />
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    </head>
+    <body>
+      <header>
+            <div class="logo">
+                <a href="../">Spencer Peters</a>
+            </div>
+            <nav>
+                <a href="../">Home</a>
+                <!-- <a href="#posts">Posts</a> -->
+                <!-- <a href="#about-me">About Me</a> -->
+                <a href="#Research">Research</a>
+                <a href="#Teaching">Teaching</a>
+                <a href="../archive.html">Archive</a>
+                <a href="#Other-sites">Other Sites</a>
+            </nav>
+        </header>
+
+        <main role="main">
+            <h1>The Matching Factory</h1>
+            <article>
+    <section class="header">
+        Posted on September 26, 2019
+        
+            by Spencer
+        
+    </section>
+    <section class="blogpostbody">
+        <p>Suppose I have a bipartite graph <span class="math inline">\(G = (L, R, E)\)</span>, where <span class="math inline">\(L\)</span> and <span class="math inline">\(R\)</span> have the same number of vertices <span class="math inline">\(n\)</span>, and nonnegative costs <span class="math inline">\(c(u, v)\)</span> for each edge <span class="math inline">\((u, v)\)</span>. I want to compute a minimum cost perfect matching; that is, a subset <span class="math inline">\(M\)</span> of <span class="math inline">\(E\)</span> such that every vertex of <span class="math inline">\(G\)</span> is contained in exactly one edge of <span class="math inline">\(M\)</span>, with the minimum sum of edge costs among all such subsets.</p>
+<p>One way to tackle this problem is linear programming duality. Chapter 3 of these <a href="http://www.cs.cornell.edu/courses/cs6820/2019fa/handouts/matchings.pdf">excellent lecture notes</a> by Robert Kleinberg describes a primal-dual algorithm for minimum cost bipartite perfect matching. Paraphrasing, a subset of the edge set <span class="math inline">\(E\)</span> of <span class="math inline">\(G\)</span> can be represented by a <span class="math inline">\(n \times n\)</span> matrix of zeros and ones <span class="math inline">\(X\)</span>, where <span class="math inline">\(X_{ij} = 1\)</span> represents an edge from vertex <span class="math inline">\(i \in L\)</span> to vertex <span class="math inline">\(j \in R\)</span>. The edge set represented by <span class="math inline">\(X\)</span> is a perfect matching iff the sum of each row and each column is <span class="math inline">\(1\)</span>. We want to find the cheapest such edge set, that is to solve the optimization problem:</p>
+<span class="math display">\[\begin{align}
+&amp;\min \sum_{i, j} c(i, j) X_{ij} \quad \text{subject to}\\
+&amp;\forall j \quad \sum_i X_{ij} = 1 \\
+&amp;\forall i \quad \sum_j X_{ij} = 1 \\
+&amp;\forall i \forall j \quad X_{ij} \in \{0, 1\} \\
+\end{align}\]</span>
+<p>Relaxing this to a continuous optimization problem by letting the <span class="math inline">\(X_{ij}\)</span> take values in the <em>interval</em> <span class="math inline">\([0, 1]\)</span> gives a <em>linear program</em> whose solutions are <em>fractional perfect matchings</em>; (see the lecture notes for more detail).</p>
+<span class="math display">\[\begin{align}
+&amp;\min \sum_{i, j} c(i, j) X_{ij} \quad \text{subject to}\\
+&amp;\forall j \quad \sum_i X_{ij} = 1 \\
+&amp;\forall i \quad \sum_j X_{ij} = 1 \\
+&amp;\forall i \forall j \quad X_{ij} \in [0, 1] \\
+\end{align}\]</span>
+<p>.</p>
+<p>We call the optimal objective value (in this case, the cost of the minimum cost fractional perfect matching) the <em>value</em> of this linear program. By combining the constraints of this linear program, we arrive at the <em>dual</em> program, a maximization problem whose value is equal to the value of the above program (called the <em>primal</em> program).</p>
+<p>To be continued!</p>
+    </section>
+
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+    this.page.url = 'https://www.cs.cornell.edu/~speters/posts/2019-09-26-The-Matching-Factory.html';  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = 'cornell-personal-site/posts/2019-09-26-The-Matching-Factory.markdown'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://cornell-personal-site.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+</article>
+
+        </main>
+
+        <footer>
+            Site proudly generated by
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+        </footer>
+        <script id="dsq-count-scr" src="//cornell-personal-site.disqus.com/count.js" async></script>
+    </body>
+</html>
