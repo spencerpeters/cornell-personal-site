@@ -1,8 +1,8 @@
-name:                minutes
+name:                cornell-personal-site
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/spencerpeters/30-minutes#readme
+homepage:            https://github.com/spencerpeters/cornell-personal-site#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Spencer
@@ -13,7 +13,7 @@ build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
 
-executable minutes
+executable cornell-personal-site
   main-is:          site.hs
   build-depends:    base == 4.*
                   , hakyll == 4.9.*
