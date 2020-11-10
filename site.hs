@@ -32,9 +32,16 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
-        match "posts/*" $ do
-            route $ setExtension "html"
-            compile postCompiler
+    match "posts/*" $ do
+        route $ setExtension "html"
+        compile postCompiler
+
+    match "essays/*" $ do
+        route $ setExtension "html"
+        compile postCompiler
+
+    -- match "essays/*" $ do
+    --     route $ setExtension
 
 -- This was supposed to allow me intermediate folders for posts,
 -- but for some reason isn't working. The pattern should match (tested in GHCI)
